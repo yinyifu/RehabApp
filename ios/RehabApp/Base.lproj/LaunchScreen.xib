@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="480" height="480"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Pattern_1A_Blue" translatesAutoresizingMaskIntoConstraints="NO" id="WNZ-qN-q3K">
+                    <rect key="frame" x="-210" y="0.0" width="900" height="480"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="WNZ-qN-q3K" secondAttribute="height" multiplier="15:8" id="CVC-Dt-N5n"/>
+                        <constraint firstAttribute="width" secondItem="WNZ-qN-q3K" secondAttribute="height" multiplier="15:8" id="YL9-CF-U4Z"/>
+                    </constraints>
+                </imageView>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="UB_BLU_RGB" translatesAutoresizingMaskIntoConstraints="NO" id="10Y-iT-YCE">
+                    <rect key="frame" x="215" y="220" width="50" height="40"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="10Y-iT-YCE" secondAttribute="height" multiplier="5:4" id="tSQ-hs-Cyz"/>
+                        <constraint firstAttribute="width" constant="50" id="vNM-zq-yBb"/>
+                    </constraints>
+                </imageView>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="WNZ-qN-q3K" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="6zR-Zw-vh4"/>
+                <constraint firstItem="WNZ-qN-q3K" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="8L4-bl-wr5"/>
+                <constraint firstItem="WNZ-qN-q3K" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="O9l-if-oaB"/>
+                <constraint firstItem="10Y-iT-YCE" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="Q0O-Eg-buL"/>
+                <constraint firstItem="10Y-iT-YCE" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="aEg-BL-S2D"/>
+                <constraint firstAttribute="bottom" secondItem="WNZ-qN-q3K" secondAttribute="bottom" id="ghH-In-z9L"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="548" y="455"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="Pattern_1A_Blue" width="6800" height="4400"/>
+        <image name="UB_BLU_RGB" width="1500" height="754"/>
+    </resources>
+</document>

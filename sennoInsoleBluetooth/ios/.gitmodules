@@ -1,0 +1,6 @@
+[submodule "RxSwift"]
+	path = RxSwift
+	url = https://github.com/ReactiveX/RxSwift.git
+[submodule "XCGLogger"]
+	path = XCGLogger
+	url = https://github.com/DaveWoodCom/XCGLogger.git
