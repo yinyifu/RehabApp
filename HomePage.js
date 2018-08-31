@@ -4,7 +4,9 @@ import { View, StyleSheet, ScrollView, TouchableOpacity, Text, AsyncStorage, Ima
 import EditPage from "./EditPage";
 import WorkScreen from "./WorkScreen";
 import SettingPage from "./SettingPage";
-import IntroPage from "./IntroPage"
+import IntroPage from "./IntroPage";
+
+import { store, createStoreFrom } from "./actionTypes";
 export default class HomePage extends React.Component {
   _handleBackPress() {
     this.props.navigator.pop();
@@ -14,26 +16,17 @@ export default class HomePage extends React.Component {
   }
 
   _gotoWorkPage(prop1){
+    //console.log("pass", prop1);
     this._handleNextPress({
       component: WorkScreen,
       title: 'Workout',
       passProps: {allSet : prop1},
-      rightButtonTitle: 'Setting',
-      onRightButtonPress: () => this._handleNavigationRequest(prop1),
+      /*rightButtonTitle: 'Setting',
+      onRightButtonPress: () => this._handleNavigationRequest(prop1),*/
     });
   }
 
-  _handleNavigationRequest(prop1) {
-    this.props.navigator.push({
-      component: SettingPage,
-      title: 'Setting',
-      passProps: {  },
-      rightButtonTitle: 'Done',
-      onRightButtonPress: () => {
-        this._handleBackPress();
-      },
-    });
-  }
+
 
   _gotoSettingPage(prop1, prop2){
     this._handleNextPress({
@@ -53,26 +46,32 @@ export default class HomePage extends React.Component {
           break;
         }
       }
-      AsyncStorage.setItem(item.id, JSON.stringify(item), (error) => {
+      this.saveItem(item);
+  }
+
+  saveItem(item){
+    AsyncStorage.setItem(item.id, JSON.stringify(item), (error) => {
         if(error){
           console.log("set item failed");
           console.log(JSON.stringify(item));
         }
       });
   }
+
   exercisePicked(){
 
   } 
   _componentInitialize(item) {
-    console.log(item);
-      AsyncStorage.multiSet(item.map((v) => [v.id, JSON.stringify(v)]), (errors) => {
-        if(errors){
-          console.log("you have failed me one more time son.");
-        }else{
-          console.log("Save Succeed");
-        }
-      });
-      this.setState({list: item});
+    
+    
+    AsyncStorage.multiSet(item.map((v) => [v.id, JSON.stringify(v)]), (errors) => {
+      if(errors){
+        console.log("you have failed me one more time son.");
+      }else{
+        console.log("Save Succeed");
+      }
+    });
+    this.setState({list: item});
   }
 
 
@@ -86,10 +85,12 @@ export default class HomePage extends React.Component {
       "Turn" : require("./images/turn.png"),
       "Pace & Turn" : require("./images/paceandturn.png")
     }
+    //AsyncStorage.clear();
     AsyncStorage.getAllKeys((error, keys) => {
       if(!error && keys.length == 5){
         AsyncStorage.multiGet(keys,(error, result) => {
-          this.setState({list : result.map(x=>JSON.parse(x[1]))});
+          let parsedResult = result.map(x=>JSON.parse(x[1]));
+          this.setState({list : parsedResult});
         });
       }else{
           console.log(error, keys.length);
@@ -99,11 +100,25 @@ export default class HomePage extends React.Component {
               title: 'GAT Tasks',
               navigationBarHidden: true,
               passProps: {initialize : this._componentInitialize}
-            });});
+          });});
         }
       });
     this._componentInitialize = this._componentInitialize.bind(this);
     this._addStateHandler = this._addStateHandler.bind(this);
+    this.saveItem = this.saveItem.bind(this);
+
+    
+    store.subscribe(() =>{
+        const state = store.getState();
+        console.log("subscribed");
+        this.state.list.map(item => {
+          if(state.id == item.id){
+            item.feedback = state.feedback;
+            this.saveItem(item);
+          }
+        });
+      }
+    );
   }
   
   ready(){

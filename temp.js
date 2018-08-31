@@ -7,25 +7,20 @@ import InsolebluetoothView from "./InsolebluetoothNativeView"
 //import RNTBlue from "react-native-senno-insole-bluetooth"
 import {NativeEventEmitter, NativeModules} from 'react-native';
 const {RNTBlueManager} = NativeModules;
-import {createStoreFrom}  from './actionTypes';
 
 export default class App extends React.Component {
-
   constructor(){
     super();
-    
     this._gotoLoginPage = this._gotoLoginPage.bind(this);
   }
-
   _gotoLoginPage(){
     this.refs.nav.push({
       component: LoginPage,
       title: 'Login To SennoGait'
     });
   }
-
   componentDidMount () {
-    /*const blueEmitter = new NativeEventEmitter(NativeModules.ReactNativeEventEmitter);
+    const blueEmitter = new NativeEventEmitter(NativeModules.ReactNativeEventEmitter);
     const subscription = blueEmitter.addListener(
       'DiscInsole',
       (reminder) => {
@@ -43,11 +38,16 @@ export default class App extends React.Component {
     );
     RNTBlueManager.discoverInsoles((insoles)=>{});
      < InsolebluetoothView style={{flex: 1}}/>
-    */
+     
   }
   render() {
     return (
-      <NavigatorIOS
+      <InsolebluetoothView style={{flex: 1}}/>
+    )
+  }
+}
+/*
+<NavigatorIOS
         initialRoute={{
           component: HomePage,
           title: 'Workout',
@@ -55,9 +55,4 @@ export default class App extends React.Component {
         }}
         style={{flex: 1}}
       />
-    )
-  }
-}
-/*
-
      */

@@ -6,23 +6,41 @@ import Charts from './Charts';
 import HistoryCharts from './HistoryCharts';
 import FeedbackPage from './FeedbackPage';
 import TrainPage from './TrainPage';
+import SettingPage from './SettingPage';
 
+import {TURN, TURNPACE} from './exerciseTypes';
+import {store, SettingChanged} from './actionTypes';
+
+
+
+const workoutIcon = require('./images/stopwatch.png');
+const staticticIcon = require('./images/Investment.png');
+const feedbackIcon = require('./images/statistics.png');
+const settingIcon = require('./images/settings.png');
 // class for  //
 export default class WorkScreen extends React.Component {
-	
+  _handleNavigationRequest(prop1) {
+    this.props.navigator.push({
+      component: SettingPage,
+      title: 'Setting',
+      passProps: {},
+    });
+  }
+
   componentWillMount() {
     this.mounted && clearInterval(this.intervalId);
     this.mounted = false;
   }
   componentDidMount(){
-    const allSet = this.props.allSet;
-    this.setState({userSetting:allSet, loaded: true});
+    const { allSet } = this.props;
+    SettingChanged(allSet.id, allSet.feedback);
+    this.setState({ type : allSet.type, userSetting:allSet.settings, feedback: allSet.feedback,  loaded: true});
   }
   _randomFunction(){
 
   }
-  constructor(){
-    super();
+  constructor(props){
+    super(props);
     this.state = {
       selectedTab : "Workout",
       userSetting: [],
@@ -32,11 +50,11 @@ export default class WorkScreen extends React.Component {
     this.left = 0;
     this._randomFunction = this._randomFunction.bind(this);
   }
-  
   render() {
 
     const setting = this.props.setting;
-      if(setting != null){
+    const isTurn = this.state.type == TURNPACE || this.state.type == TURN;
+    /*if(setting != null){
         this.props.setting = null;
         for(key in setting){
           this.state.userSetting[key] = setting[key]
@@ -46,15 +64,21 @@ export default class WorkScreen extends React.Component {
           console.log("error occured in updating setting in databse");
         }
       });
-    }
+    }*/
+    const { feedback } = this.state;
 
+    //const mode = feedback.GaitInstructionMode;
+    const settingListDefault =  [{title: 'GaitInstructionMode', data: ['Audio', 'Speech']}];
+    const settingListTurn = [{title: 'GaitInstructionMode', data: ['Audio']},
+                            {title: 'GaitTurnInstructionMode', data: ['Speech', 'Choir']}];
+    //console.log(isTurn);
     return (
       <View style={[ styles.container]}>
          {(this.state.loaded && !this.state.exerciseStarted) && 
           <TabBarIOS selectedTab={this.state.selectedTab}>
               <TabBarIOS.Item
                 selected={this.state.selectedTab === 'Workout'}
-                
+                icon={workoutIcon}
                 title={'Workout'}
                 onPress={() => {
                   this.setState({
@@ -63,21 +87,24 @@ export default class WorkScreen extends React.Component {
                 }}>
               
                 <TrainPage key={this.state.userSetting.speedVariation[0]+this.state.userSetting.speedVariation[1]}
-                  speedRange={this.state.userSetting.speedVariation.map( (v) => 60000/v)} 
+                  /*speedRange={this.state.userSetting.speedVariation.map( (v) => 60000/v)} 
                   timeRange={this.state.userSetting.timeVariation.map((v) => v*1000)} 
                   duration={this.state.userSetting.duration*1000}
-                  segments={this.state.userSetting.segments}
-                  gaitInstruct = {this.state.userSetting.GaitInstructionAudio}
+                  segments={this.state.userSetting.segments}*/
+                  setting = {this.state.userSetting}
+                  feedback = {this.state.feedback}
+                  type = {this.state.type}
+                  gaitInstruct = {this.state.userSetting.GaitInstructionMode}
                   onExerciseStart = {() => {
                       //this.setState({exerciseStarted: true});
                   }}
                   onExerciseComplete = {() => {
                       //this.setState({exerciseStarted: false});
                   }}/>
-                </TabBarIOS.Item>
+              </TabBarIOS.Item>
               <TabBarIOS.Item
                 selected={this.state.selectedTab === 'Charts'}
-                
+                icon={feedbackIcon}
                 title={'Charts'}
                 onPress={() => {
                     this.setState({
@@ -88,7 +115,7 @@ export default class WorkScreen extends React.Component {
               </TabBarIOS.Item>
               <TabBarIOS.Item
                 selected={this.state.selectedTab === 'HistoricalCharts'}
-                
+                icon={staticticIcon}
                 title={'HistoricalCharts'}
                 onPress={() => {
                     this.setState({
@@ -96,6 +123,20 @@ export default class WorkScreen extends React.Component {
                     });
                 }}>
                   <HistoryCharts/>
+                </TabBarIOS.Item>
+              <TabBarIOS.Item
+                selected={this.state.selectedTab === 'SettingPage'}
+                icon={settingIcon}
+                title={'Setting'}
+
+                onPress={() => {
+                    this.setState({
+                        selectedTab: 'SettingPage',
+                    });
+                }}>
+                  <SettingPage setting={this.props.allSet}
+                    list = {isTurn ? settingListTurn : settingListDefault}
+                  />
                 </TabBarIOS.Item>
               </TabBarIOS>
             }
@@ -108,13 +149,14 @@ export default class WorkScreen extends React.Component {
             </Text>
           </View>
         }
-        {this.state.exerciseStarted && 
+        /*{this.state.loaded && this.state.exerciseStarted && 
           <TrainPage key={this.state.userSetting.speedVariation[0]+this.state.userSetting.speedVariation[1]}
                 speedRange={this.state.userSetting.speedVariation.map( (v) => 60000/v)} 
                 timeRange={this.state.userSetting.timeVariation.map((v) => v*1000)} 
                 duration={this.state.userSetting.duration*1000}
                 segments={this.state.userSetting.segments}
-                gaitInstruct = {this.state.userSetting.GaitInstructionAudio}
+                
+                allSet = {this.state.allSet}
                 onExerciseStart = {() => {
                   this.setState({exerciseStarted: true});
                 }}
@@ -122,7 +164,7 @@ export default class WorkScreen extends React.Component {
                   this.setState({exerciseStarted: false});
                 }}
             />
-        }
+        }*/
         </View>
     );
   }

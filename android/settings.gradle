@@ -1,4 +1,6 @@
 rootProject.name = 'RehabApp'
+include ':react-native-tone'
+project(':react-native-tone').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-tone/android')
 include ':react-native-ble-plx'
 project(':react-native-ble-plx').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-ble-plx/android')
 include ':react-native-senno-insole-bluetooth'

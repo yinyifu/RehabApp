@@ -35,9 +35,25 @@
 		2DF0FFEE2056DD460020B375 /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DAD3EA31DF850E9000B6D8A /* libReact.a */; };
 		5E9157361DD0AC6A00FF2AA8 /* libRCTAnimation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E9157331DD0AC6500FF2AA8 /* libRCTAnimation.a */; };
 		832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
+		A873A8B80BDB4E2F9F7BE7DC /* libRNTone.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A096198C5AA47DB81B87E93 /* libRNTone.a */; };
 		ADBDB9381DFEBF1600ED6528 /* libRCTBlob.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ADBDB9271DFEBF0700ED6528 /* libRCTBlob.a */; };
 		B9576BDA20E4ACF900726438 /* libTextToSpeech.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B9576BD920E4ACE100726438 /* libTextToSpeech.a */; };
 		B9576BE120E4B30A00726438 /* libBleManager.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B9576BE020E4B2FF00726438 /* libBleManager.a */; };
+		B97F10212138F1580059FACB /* female7.wav in Resources */ = {isa = PBXBuildFile; fileRef = B97F0FE92138F1300059FACB /* female7.wav */; };
+		B97F10222138F1580059FACB /* female4.wav in Resources */ = {isa = PBXBuildFile; fileRef = B97F10132138F1320059FACB /* female4.wav */; };
+		B97F10232138F1580059FACB /* male3.wav in Resources */ = {isa = PBXBuildFile; fileRef = B97F10142138F1350059FACB /* male3.wav */; };
+		B97F10242138F1580059FACB /* female6.wav in Resources */ = {isa = PBXBuildFile; fileRef = B97F10152138F1380059FACB /* female6.wav */; };
+		B97F10252138F1580059FACB /* female1.wav in Resources */ = {isa = PBXBuildFile; fileRef = B97F10162138F13A0059FACB /* female1.wav */; };
+		B97F10262138F1580059FACB /* female3.wav in Resources */ = {isa = PBXBuildFile; fileRef = B97F10172138F13E0059FACB /* female3.wav */; };
+		B97F10272138F1580059FACB /* male1.wav in Resources */ = {isa = PBXBuildFile; fileRef = B97F10182138F1410059FACB /* male1.wav */; };
+		B97F10282138F1580059FACB /* male2.wav in Resources */ = {isa = PBXBuildFile; fileRef = B97F10192138F1440059FACB /* male2.wav */; };
+		B97F10292138F1580059FACB /* male6.wav in Resources */ = {isa = PBXBuildFile; fileRef = B97F101A2138F1470059FACB /* male6.wav */; };
+		B97F102A2138F1580059FACB /* female5.wav in Resources */ = {isa = PBXBuildFile; fileRef = B97F101B2138F14A0059FACB /* female5.wav */; };
+		B97F102B2138F1580059FACB /* female2.wav in Resources */ = {isa = PBXBuildFile; fileRef = B97F101C2138F14D0059FACB /* female2.wav */; };
+		B97F102C2138F1580059FACB /* male7.wav in Resources */ = {isa = PBXBuildFile; fileRef = B97F101D2138F1500059FACB /* male7.wav */; };
+		B97F102D2138F1580059FACB /* leftPitch.wav in Resources */ = {isa = PBXBuildFile; fileRef = B97F101E2138F1520059FACB /* leftPitch.wav */; };
+		B97F102E2138F1580059FACB /* male5.wav in Resources */ = {isa = PBXBuildFile; fileRef = B97F101F2138F1550059FACB /* male5.wav */; };
+		B97F102F2138F1580059FACB /* male4.wav in Resources */ = {isa = PBXBuildFile; fileRef = B97F10202138F1570059FACB /* male4.wav */; };
 		B9888D182117A8F6008850DF /* libcxxreact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DAD3EA91DF850E9000B6D8A /* libcxxreact.a */; };
 		B9888D192117A8F6008850DF /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 146834041AC3E56700842450 /* libReact.a */; };
 		B9888D1B2117AB01008850DF /* PlaceHolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9888D1A2117AB01008850DF /* PlaceHolder.swift */; };
@@ -334,6 +350,13 @@
 			remoteGlobalIDString = 358F4ED71D1E81A9004DF814;
 			remoteInfo = RCTBlob;
 		};
+		B923FB6D212C89040077FFE4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 55791831B35343769E4ADAEC /* RNTone.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 134814201AA4EA6300B7C361;
+			remoteInfo = RNTone;
+		};
 		B9576BD820E4ACE100726438 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = B9576BA920E4ACE000726438 /* TextToSpeech.xcodeproj */;
@@ -442,13 +465,30 @@
 		2D02E47B1E0B4A5D006451C7 /* RehabApp-tvOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "RehabApp-tvOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D02E4901E0B4A5D006451C7 /* RehabApp-tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "RehabApp-tvOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D16E6891FA4F8E400B85C8A /* libReact.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libReact.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		55791831B35343769E4ADAEC /* RNTone.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNTone.xcodeproj; path = "../node_modules/react-native-tone/ios/RNTone.xcodeproj"; sourceTree = "<group>"; };
 		5E91572D1DD0AC6500FF2AA8 /* RCTAnimation.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTAnimation.xcodeproj; path = "../node_modules/react-native/Libraries/NativeAnimation/RCTAnimation.xcodeproj"; sourceTree = "<group>"; };
 		78C398B01ACF4ADC00677621 /* RCTLinking.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTLinking.xcodeproj; path = "../node_modules/react-native/Libraries/LinkingIOS/RCTLinking.xcodeproj"; sourceTree = "<group>"; };
+		7A096198C5AA47DB81B87E93 /* libRNTone.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNTone.a; sourceTree = "<group>"; };
 		832341B01AAA6A8300B99B32 /* RCTText.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTText.xcodeproj; path = "../node_modules/react-native/Libraries/Text/RCTText.xcodeproj"; sourceTree = "<group>"; };
 		ADBDB91F1DFEBF0600ED6528 /* RCTBlob.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTBlob.xcodeproj; path = "../node_modules/react-native/Libraries/Blob/RCTBlob.xcodeproj"; sourceTree = "<group>"; };
 		ADFB220DA8E24DB69DCE6022 /* libRNSennoInsoleBluetooth.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNSennoInsoleBluetooth.a; sourceTree = "<group>"; };
 		B9576BA920E4ACE000726438 /* TextToSpeech.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = TextToSpeech.xcodeproj; path = "../node_modules/react-native-tts/ios/TextToSpeech.xcodeproj"; sourceTree = "<group>"; };
 		B9576BDB20E4B2FF00726438 /* BleManager.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = BleManager.xcodeproj; path = "../node_modules/react-native-ble-manager/ios/BleManager.xcodeproj"; sourceTree = "<group>"; };
+		B97F0FE92138F1300059FACB /* female7.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = female7.wav; sourceTree = "<group>"; };
+		B97F10132138F1320059FACB /* female4.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = female4.wav; sourceTree = "<group>"; };
+		B97F10142138F1350059FACB /* male3.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = male3.wav; sourceTree = "<group>"; };
+		B97F10152138F1380059FACB /* female6.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = female6.wav; sourceTree = "<group>"; };
+		B97F10162138F13A0059FACB /* female1.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = female1.wav; sourceTree = "<group>"; };
+		B97F10172138F13E0059FACB /* female3.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = female3.wav; sourceTree = "<group>"; };
+		B97F10182138F1410059FACB /* male1.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = male1.wav; sourceTree = "<group>"; };
+		B97F10192138F1440059FACB /* male2.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = male2.wav; sourceTree = "<group>"; };
+		B97F101A2138F1470059FACB /* male6.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = male6.wav; sourceTree = "<group>"; };
+		B97F101B2138F14A0059FACB /* female5.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = female5.wav; sourceTree = "<group>"; };
+		B97F101C2138F14D0059FACB /* female2.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = female2.wav; sourceTree = "<group>"; };
+		B97F101D2138F1500059FACB /* male7.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = male7.wav; sourceTree = "<group>"; };
+		B97F101E2138F1520059FACB /* leftPitch.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = leftPitch.wav; sourceTree = "<group>"; };
+		B97F101F2138F1550059FACB /* male5.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = male5.wav; sourceTree = "<group>"; };
+		B97F10202138F1570059FACB /* male4.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = male4.wav; sourceTree = "<group>"; };
 		B9888D1A2117AB01008850DF /* PlaceHolder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceHolder.swift; sourceTree = "<group>"; };
 		B9888D1C2117AB49008850DF /* InsoleScene.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = InsoleScene.scnassets; sourceTree = "<group>"; };
 		B99A93D6211903E80071142F /* RxSwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = RxSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -503,6 +543,7 @@
 				00C302EA1ABCBA2D00DB3ED1 /* libRCTVibration.a in Frameworks */,
 				B99A941621190E990071142F /* ObjcExceptionBridging.framework in Frameworks */,
 				139FDEF61B0652A700C62182 /* libRCTWebSocket.a in Frameworks */,
+				A873A8B80BDB4E2F9F7BE7DC /* libRNTone.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -688,6 +729,7 @@
 				00C302DF1ABCB9EE00DB3ED1 /* RCTVibration.xcodeproj */,
 				139FDEE61B06529A00C62182 /* RCTWebSocket.xcodeproj */,
 				ECB2130DA62548EE9859E8FA /* RNSennoInsoleBluetooth.xcodeproj */,
+				55791831B35343769E4ADAEC /* RNTone.xcodeproj */,
 			);
 			name = Libraries;
 			sourceTree = "<group>";
@@ -711,6 +753,21 @@
 				B9BE01C320E1DC94000C2484 /* stepLeft.wav */,
 				B9BE01EE20E1DC94000C2484 /* stepRight.wav */,
 				B9E2E49720E1B0EE00443FBD /* fast.png */,
+				B97F10162138F13A0059FACB /* female1.wav */,
+				B97F101C2138F14D0059FACB /* female2.wav */,
+				B97F10172138F13E0059FACB /* female3.wav */,
+				B97F10132138F1320059FACB /* female4.wav */,
+				B97F101B2138F14A0059FACB /* female5.wav */,
+				B97F10152138F1380059FACB /* female6.wav */,
+				B97F0FE92138F1300059FACB /* female7.wav */,
+				B97F101E2138F1520059FACB /* leftPitch.wav */,
+				B97F10182138F1410059FACB /* male1.wav */,
+				B97F10192138F1440059FACB /* male2.wav */,
+				B97F10142138F1350059FACB /* male3.wav */,
+				B97F10202138F1570059FACB /* male4.wav */,
+				B97F101F2138F1550059FACB /* male5.wav */,
+				B97F101A2138F1470059FACB /* male6.wav */,
+				B97F101D2138F1500059FACB /* male7.wav */,
 				B9BE408C20E1D02C0022663C /* icomoon.ttf */,
 				B9E2E49B20E1B0EF00443FBD /* pace.png */,
 				B9E2E49920E1B0EE00443FBD /* paceandturn.png */,
@@ -748,6 +805,14 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		B923FB6A212C89040077FFE4 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				B923FB6E212C89040077FFE4 /* libRNTone.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		B9576BAA20E4ACE000726438 /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -768,6 +833,7 @@
 			isa = PBXGroup;
 			children = (
 				ADFB220DA8E24DB69DCE6022 /* libRNSennoInsoleBluetooth.a */,
+				7A096198C5AA47DB81B87E93 /* libRNTone.a */,
 			);
 			name = "Recovered References";
 			sourceTree = "<group>";
@@ -975,6 +1041,10 @@
 				{
 					ProductGroup = B9E2E44020E1713400443FBD /* Products */;
 					ProjectRef = B9E2E43F20E1713400443FBD /* RNSVG.xcodeproj */;
+				},
+				{
+					ProductGroup = B923FB6A212C89040077FFE4 /* Products */;
+					ProjectRef = 55791831B35343769E4ADAEC /* RNTone.xcodeproj */;
 				},
 				{
 					ProductGroup = B9576BAA20E4ACE000726438 /* Products */;
@@ -1244,6 +1314,13 @@
 			remoteRef = ADBDB9261DFEBF0700ED6528 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
+		B923FB6E212C89040077FFE4 /* libRNTone.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libRNTone.a;
+			remoteRef = B923FB6D212C89040077FFE4 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		B9576BD920E4ACE100726438 /* libTextToSpeech.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
@@ -1300,14 +1377,29 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B97F10222138F1580059FACB /* female4.wav in Resources */,
+				B97F10282138F1580059FACB /* male2.wav in Resources */,
+				B97F10292138F1580059FACB /* male6.wav in Resources */,
 				B9BE408D20E1D02C0022663C /* icomoon.ttf in Resources */,
+				B97F102D2138F1580059FACB /* leftPitch.wav in Resources */,
+				B97F10252138F1580059FACB /* female1.wav in Resources */,
+				B97F102C2138F1580059FACB /* male7.wav in Resources */,
 				B9BE01EF20E1DC94000C2484 /* stepLeft.wav in Resources */,
+				B97F10262138F1580059FACB /* female3.wav in Resources */,
 				B9888D1D2117AB4A008850DF /* InsoleScene.scnassets in Resources */,
 				B9E2E49E20E1B0EF00443FBD /* paceandturn.png in Resources */,
+				B97F10242138F1580059FACB /* female6.wav in Resources */,
+				B97F102F2138F1580059FACB /* male4.wav in Resources */,
+				B97F10232138F1580059FACB /* male3.wav in Resources */,
+				B97F102A2138F1580059FACB /* female5.wav in Resources */,
+				B97F10272138F1580059FACB /* male1.wav in Resources */,
 				B9E2E49C20E1B0EF00443FBD /* fast.png in Resources */,
 				B9E2E49D20E1B0EF00443FBD /* slow.png in Resources */,
+				B97F102B2138F1580059FACB /* female2.wav in Resources */,
 				B9BE01F020E1DC94000C2484 /* stepRight.wav in Resources */,
+				B97F102E2138F1580059FACB /* male5.wav in Resources */,
 				B9E2E49F20E1B0EF00443FBD /* turn.png in Resources */,
+				B97F10212138F1580059FACB /* female7.wav in Resources */,
 				B9E2E4A020E1B0EF00443FBD /* pace.png in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
@@ -1448,12 +1540,14 @@
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/react-native-senno-insole-bluetooth/ios/**",
+					"$(SRCROOT)/../node_modules/react-native-tone/ios",
 				);
 				INFOPLIST_FILE = RehabAppTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				OTHER_LDFLAGS = (
@@ -1474,12 +1568,14 @@
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/react-native-senno-insole-bluetooth/ios/**",
+					"$(SRCROOT)/../node_modules/react-native-tone/ios",
 				);
 				INFOPLIST_FILE = RehabAppTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				OTHER_LDFLAGS = (
@@ -1502,6 +1598,7 @@
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/react-native-senno-insole-bluetooth/ios/**",
+					"$(SRCROOT)/../node_modules/react-native-tone/ios",
 				);
 				INFOPLIST_FILE = RehabApp/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
@@ -1529,6 +1626,7 @@
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/react-native-senno-insole-bluetooth/ios/**",
+					"$(SRCROOT)/../node_modules/react-native-tone/ios",
 				);
 				INFOPLIST_FILE = RehabApp/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
@@ -1560,11 +1658,13 @@
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/react-native-senno-insole-bluetooth/ios/**",
+					"$(SRCROOT)/../node_modules/react-native-tone/ios",
 				);
 				INFOPLIST_FILE = "RehabApp-tvOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				OTHER_LDFLAGS = (
@@ -1594,11 +1694,13 @@
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/react-native-senno-insole-bluetooth/ios/**",
+					"$(SRCROOT)/../node_modules/react-native-tone/ios",
 				);
 				INFOPLIST_FILE = "RehabApp-tvOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				OTHER_LDFLAGS = (
@@ -1627,11 +1729,13 @@
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/react-native-senno-insole-bluetooth/ios/**",
+					"$(SRCROOT)/../node_modules/react-native-tone/ios",
 				);
 				INFOPLIST_FILE = "RehabApp-tvOSTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				OTHER_LDFLAGS = (
@@ -1660,11 +1764,13 @@
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/react-native-senno-insole-bluetooth/ios/**",
+					"$(SRCROOT)/../node_modules/react-native-tone/ios",
 				);
 				INFOPLIST_FILE = "RehabApp-tvOSTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				OTHER_LDFLAGS = (

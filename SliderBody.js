@@ -174,13 +174,7 @@ export default class SliderBody extends Component {
 			        {this.state.value.toFixed(0)}
 			    </Text>}
 
-	            <Rect  {...this._panResponder.panHandlers}
-	        	  x = {0}
-	              y = {0}
-	              width = "100%"
-	              height = "100%"
-	              fill = "#0000"
-              	/>
+	            
 
               	<Circle
 	        	  cx = {currentPercentage}
@@ -190,6 +184,13 @@ export default class SliderBody extends Component {
 	              strokeWidth = "2"
 	              fill = {minimumTrackTintColor}
           		/>
+          		<Rect  {...this._panResponder.panHandlers}
+	        	  x = {0}
+	              y = {0}
+	              width = "100%"
+	              height = "100%"
+	              fill = "#0000"
+              	/>
 
 		      </Svg>
 		    </View>

@@ -3,6 +3,7 @@ package com.rehabapp;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
+import com.reactlibrary.RNTonePackage;
 import com.polidea.reactnativeble.BlePackage;
 import com.reactlibrary.RNSennoInsoleBluetoothPackage;
 import net.no_mad.tts.TextToSpeechPackage;
@@ -32,6 +33,7 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
+            new RNTonePackage(),
             new BlePackage(),
             new RNSennoInsoleBluetoothPackage(),
             new TextToSpeechPackage(),

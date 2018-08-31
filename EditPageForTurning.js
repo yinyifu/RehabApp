@@ -5,10 +5,7 @@ import MultiSlider from './MultiSlider';
 import HomePage from "./HomePage";
 import {PropTypes} from 'prop-types';
 
-import {MAX_EXERCISE_LEN, MIN_EXERCISE_LEN, EXERCISE_STEP, MAX_SPEED, MIN_SPEED, SPEED_STEP, MAX_SHARP, MIN_SHARP, MIN_RANGE, MAX_RANGE, MIN_DIRECTION, MAX_DIRECTION} from "./constants";
-import {DISABLE_LEFT, DISABLE_RIGHT, DISABLE_LEFT_AND_RIGHT} from "./disablesOptions";
-
-import {SLOW, FAST, PACE, TURN, TURNPACE} from "./exerciseTypes";
+import {MAX_EXERCISE_LEN, MIN_EXERCISE_LEN, EXERCISE_STEP, MAX_SPEED, MIN_SPEED, SPEED_STEP} from "./constants";
 
 export default class EditPage extends React.Component{
 
@@ -27,10 +24,7 @@ export default class EditPage extends React.Component{
 	constructor() {
 		super();
 		console.log(MAX_EXERCISE_LEN, MIN_EXERCISE_LEN);
-		this.state = {
-			loaded: false,
-			settings: {}
-		};
+		this.state = null;
 		this.shouldRender = false;
 		this.shouldScroll = true;
 		this.image = 0;
@@ -45,7 +39,6 @@ export default class EditPage extends React.Component{
 	componentDidMount(){
 		this.shouldRender = true;
 		const item = this.props.editSetting;
-		this.state.loaded = true;
 	    this.setState(item);
 	    console.log(item);
 	    this.image = this.props.image;
@@ -54,22 +47,9 @@ export default class EditPage extends React.Component{
 		return this.shouldRender;
 	}
 	render(){
-		const { loaded, type } = this.state;
-		const { duration, segments, speedVariation, timeVariation, turnSharpness, turnRange, turnDirection } = this.state.settings;
-		var choices = {}
-		choices[SLOW] = DISABLE_RIGHT;
-		choices[FAST] = DISABLE_LEFT;
-		choices[TURN] = DISABLE_LEFT_AND_RIGHT;
-
-		const disableOption = choices[type];
-
-		const isTurn = type == TURN || type == TURNPACE;
-
-		console.log(type, disableOption);
-
 		return(
 			<ScrollView style={[styles.sv]} scrollEnabled={this.shouldScroll}>
-				{loaded && <View style={[ styles.shadowed]}>
+				{this.state != null && <View style={[ styles.shadowed]}>
 						
 						<View style={[styles.imageCard]}>
 			              <ImageBackground style={[styles.buttonImage]} source={ this.image }/>
@@ -93,13 +73,11 @@ export default class EditPage extends React.Component{
 								this.shouldRender = true;
 								this.shouldScroll = true;
 								this.setState({
-									settings:Object.assign(this.state.settings, {
-										duration: dur,
-										segments : Math.min(segments, dur/5)
-									})
+									duration : dur, 
+									segments : Math.min(this.state.segments, dur/5)
 								});
 							}}
-							value={duration} 
+							value={this.state.duration} 
 							maximumValue={MAX_EXERCISE_LEN} 
 							minimumValue={MIN_EXERCISE_LEN} 
 							minimumTrackTintColor='#ffffff' 
@@ -115,7 +93,7 @@ export default class EditPage extends React.Component{
 							<Text style={[styles.labelSeg]}>Number of Pace Changes</Text>
 						</View>	
 						<View style={[styles.containerSheet]}>.                         
-							<SingleSlider key={duration/5}                                       
+							<SingleSlider  key={this.state.duration/5}                                       
 								style={[styles.inline]}                                  
 								onSlidingStart = {()=>{
 									this.shouldScroll = false;
@@ -125,17 +103,16 @@ export default class EditPage extends React.Component{
 								onSlidingComplete={(seg)=>{
 									this.shouldScroll = true;
 									this.shouldRender = true;
-									this.state.settings.segments = seg;
-									this.forceUpdate();
+									this.setState({segments: seg})
 								}}
-								value={segments}                                 
-								maximumValue={duration/5}                                             
+								value={this.state.segments}                                 
+								maximumValue={this.state.duration/5}                                             
 								minimumValue={1}                                          
 								minimumTrackTintColor='#ffffff'                          
 								maximumTrackTintColor='#005bbb'                         
 								step={1}             
 								labelTextColor = '#ffffff'
-								showLabelAll={(duration/5 > 10) ? false : true}>
+								showLabelAll={(this.state.duration/5 > 10) ? false : true}>
 							</SingleSlider>
 						</View>	
 					</View>
@@ -146,11 +123,11 @@ export default class EditPage extends React.Component{
 						<View style={[styles.containerSheet]}>
 							<MultiSlider 
 								style={[styles.inline]}  
-								maximumValue={duration}                                             
+								maximumValue={this.state.duration}                                             
 								minimumValue={2}                                     
 								minimumTrackTintColor='#005bbb'                          
 								maximumTrackTintColor='#ffffff'                         
-								value={timeVariation}
+								value={this.state.timeVariation}
 								step={0.5}
 								labelTextColor = '#ffffff'
 								showLabelAll={false}
@@ -162,8 +139,7 @@ export default class EditPage extends React.Component{
 								onSlidingComplete={(time)=>{
 									this.shouldScroll = true;
 									this.shouldRender = true;
-									this.state.settings.timeVariation = time;
-									this.forceUpdate();
+									this.setState({timeVariation:time})
 								}}
 							>
 	    					</MultiSlider>	
@@ -183,9 +159,8 @@ export default class EditPage extends React.Component{
 								minimumValue={MIN_SPEED}                                  
 								minimumTrackTintColor='#005bbb'                          
 								maximumTrackTintColor='#ffffff'                         
-								value={speedVariation}
+								value={this.state.speedVariation}
 								step={SPEED_STEP}
-								disables = {disableOption}
 								labelTextColor = '#ffffff'
 								showLabelAll={false}
 								onSlidingStart = {()=>{
@@ -196,123 +171,29 @@ export default class EditPage extends React.Component{
 								onSlidingComplete={(speed)=>{
 									this.shouldScroll = true;
 									this.shouldRender = true;
-									this.state.settings.speedVariation = speed;
-									this.forceUpdate();
+									this.setState({speedVariation:speed})
 								}}
 							/>
 						</View>	
 					</View>
-					{isTurn && 
-						<View style={[styles.containerList]}>
-					
-						<View style={[styles.containerSheet]}>
-							<Text style={[styles.labelSeg]}>Turn Sharpness (degrees/second)</Text>
-						</View>	
-						<View style={[styles.containerSheet]}>
-							<MultiSlider 
-								style={[styles.inline, {marginBottom: 20}]}  
-								maximumValue={MAX_SHARP}                                             
-								minimumValue={MIN_SHARP}                                  
-								minimumTrackTintColor='#005bbb'                          
-								maximumTrackTintColor='#ffffff'                         
-								value={turnSharpness}
-								step={SPEED_STEP}
-								labelTextColor = '#ffffff'
-								showLabelAll={false}
-								onSlidingStart = {()=>{
-									this.shouldScroll = false;
-									this.forceUpdate();
-									this.shouldRender = false;
-								}}
-								onSlidingComplete={(sharp)=>{
-									this.shouldScroll = true;
-									this.shouldRender = true;
-									this.state.settings.turnSharpness = sharp;
-									this.forceUpdate();
-								}}
-							/>
-						</View>	
-					</View>}
-					{isTurn && 
-						<View style={[styles.containerList]}>
-						<View style={[styles.containerSheet]}>
-							<Text style={[styles.labelSeg]}>Turn Range (degrees)</Text>
-						</View>	
-						<View style={[styles.containerSheet]}>
-							<MultiSlider 
-								style={[styles.inline, {marginBottom: 20}]}  
-								maximumValue={MAX_RANGE}                                             
-								minimumValue={MIN_RANGE}                                  
-								minimumTrackTintColor='#005bbb'                          
-								maximumTrackTintColor='#ffffff'                         
-								value={turnRange}
-								step={SPEED_STEP}
-								labelTextColor = '#ffffff'
-								showLabelAll={false}
-								onSlidingStart = {()=>{
-									this.shouldScroll = false;
-									this.forceUpdate();
-									this.shouldRender = false;
-								}}
-								onSlidingComplete={(sharp)=>{
-									this.shouldScroll = true;
-									this.shouldRender = true;
-									this.state.settings.turnRange = sharp;
-									this.forceUpdate();
-								}}
-							/>
-						</View>	
-					</View>}
-
-					{isTurn && 
-						<View style={[styles.containerList]}>
-						<View style={[styles.containerSheet]}>
-							<Text style={[styles.labelSeg]}>Turn Direction (left/both/right)</Text>
-						</View>	
-						<View style={[styles.containerSheet]}>
-							<SingleSlider 
-								style={[styles.inline, {marginBottom: 20}]}  
-								maximumValue={MAX_DIRECTION}                                             
-								minimumValue={MIN_DIRECTION}                                  
-								minimumTrackTintColor='#005bbb'                          
-								maximumTrackTintColor='#ffffff'                         
-								value={turnDirection}
-								step={SPEED_STEP}
-								labelTextColor = '#ffffff'
-								showLabelAll={false}
-								onSlidingStart = {()=>{
-									this.shouldScroll = false;
-									this.forceUpdate();
-									this.shouldRender = false;
-								}}
-								onSlidingComplete={(sharp)=>{
-									this.shouldScroll = true;
-									this.shouldRender = true;
-									this.state.settings.turnDirection = sharp;
-									this.forceUpdate();
-								}}
-							/>
-						</View>	
-					</View>}
-
 					<View style={[styles.containerList]}>
 					
-						<View style={[styles.containerSheet]}>
-							<TouchableOpacity block info style={styles.navButton} 
-								onPress={()=>{
-									this._handleCancel();
-								}}>
-								<Text style={{color: "#fff", fontSize: 20}}>Cancel</Text>
-							</TouchableOpacity>
-							<TouchableOpacity block info style={styles.navButton} 
-								onPress={()=>{
-									this._saveSettingAndGoBack(this.state);
-								}}> 
-								<Text style={{color: "#fff", fontSize: 20}}>Save</Text>
-							</TouchableOpacity>
-						</View>
+					<View style={[styles.containerSheet]}>
+						<TouchableOpacity block info style={styles.navButton} 
+							onPress={()=>{
+								this._handleCancel();
+							}}>
+							<Text style={{color: "#fff", fontSize: 20}}>Cancel</Text>
+						</TouchableOpacity>
+						<TouchableOpacity block info style={styles.navButton} 
+							onPress={()=>{
+								this._saveSettingAndGoBack(this.state);
+							}}> 
+							<Text style={{color: "#fff", fontSize: 20}}>Save</Text>
+						</TouchableOpacity>
 					</View>
-
+					</View>
+					
 				</View>}
 			</ScrollView>
 		);

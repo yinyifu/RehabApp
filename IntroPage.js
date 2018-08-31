@@ -2,76 +2,102 @@ import * as React from 'react';
 
 import { View, StyleSheet, TouchableOpacity, Text, AsyncStorage} from 'react-native';
 import Swiper from 'react-native-swiper';
-import MultiSlider from './MultiSlider';
+import SingleSlider from './SingleSlider';
 import HomePage from './HomePage';
+import {SLOW, FAST, PACE, TURN, TURNPACE} from "./exerciseTypes";
+import {MAX_SPEED, MIN_SPEED, SPEED_STEP, MIN_SHARP, MAX_SHARP, INSTRUCT_MODE_AUDIO, INSTRUCT_MODE_SPEECH, INSTRUCT_MODE_CHOIR, CORRECTNESS_MODE_AUDIO, CORRECTNESS_MODE_VIBRATION} from "./constants";
+
 export default class IntroPage extends React.Component {
-  _gotoHomePage(prop1){
-    const item = this.state.valuesForRange;
+  _gotoHomePage(){
+    const item = this.state.averageSpeed;
+    const sharp = this.state.turnSharpness;
     const omgList = [{
-          id: ""+(Math.floor(Math.random() * 1000000) + 1),
+          id: ""+(Math.floor(Math.random() * 10000000) + 1),
           name: 'Slow Pace',
-          duration : 20,
-          segments : 3,
-          timeVariation : [5.00, 7.00],
-          speedVariation : item,
-          GaitCorrectnessAudio: 1,    //
-          GaitCorrectnessVibration: 0,      //
-          GaitInstructionAudio: 1,       //
-          GaitInstructionSpeech: 0,      // 0 = audio, 1 = speech, 2 = partial, 3 = off
-          GaitInstructionPartialSpeech: 0,  // 0 = length, 
-          GaitInstructionVibration: 0,
+          type: SLOW,
+          settings: {
+            duration : 20,
+            segments : 3,
+            timeVariation : [5.00, 8.00],
+            speedVariation : [Math.max(item - 10, MIN_SPEED), item],
+          },
+          feedback:{
+            GaitCorrectnessMode: CORRECTNESS_MODE_AUDIO, 
+            GaitInstructionMode: INSTRUCT_MODE_AUDIO,
+          },
+          data: []
         },{
-          id: ""+(Math.floor(Math.random() * 1000000) + 1),
+          id: ""+(Math.floor(Math.random() * 10000000) + 1),
           name: 'Fast Pace',
-          duration : 20,
-          segments : 3,
-          timeVariation : [5.00, 7.00],
-          speedVariation : item,
-          GaitCorrectnessAudio: 1,    //
-          GaitCorrectnessVibration: 0,      //
-          GaitInstructionAudio: 1,       //
-          GaitInstructionSpeech: 0,      // 0 = audio, 1 = speech, 2 = partial, 3 = off
-          GaitInstructionPartialSpeech: 0,  // 0 = length, 
-          GaitInstructionVibration: 0,
+          type: FAST,
+          settings: {
+            duration : 20,
+            segments : 3,
+            timeVariation : [5.00, 8.00],
+            speedVariation : [item, Math.min(item+10, MAX_SPEED)],
+            
+          },
+          feedback:{
+            GaitCorrectnessMode: CORRECTNESS_MODE_AUDIO, 
+            GaitInstructionMode: INSTRUCT_MODE_AUDIO,
+          },
+          data: []
         },{
-          id: ""+(Math.floor(Math.random() * 1000000) + 1),
+          id: ""+(Math.floor(Math.random() * 10000000) + 1),
           name: 'Slow & Fast Pace',
-          duration : 20,
-          segments : 3,
-          timeVariation : [5.00, 7.00],
-          speedVariation : item,
-          GaitCorrectnessAudio: 1,    //
-          GaitCorrectnessVibration: 0,      //
-          GaitInstructionAudio: 1,       //
-          GaitInstructionSpeech: 0,      // 0 = audio, 1 = speech, 2 = partial, 3 = off
-          GaitInstructionPartialSpeech: 0,  // 0 = length, 
-          GaitInstructionVibration: 0,
+          type: PACE,
+          settings: {
+            duration : 20,
+            segments : 3,
+            timeVariation : [5.00, 8.00],
+            speedVariation : [Math.max(item - 10, MIN_SPEED), Math.min(item+10, MAX_SPEED)],
+            
+          },
+          feedback:{
+            GaitCorrectnessMode: CORRECTNESS_MODE_AUDIO, 
+            GaitInstructionMode: INSTRUCT_MODE_AUDIO,
+          },
+          data: []
         },{
-          id: ""+(Math.floor(Math.random() * 1000000) + 1),
+          id: ""+(Math.floor(Math.random() * 10000000) + 1),
           name: 'Turn',
-          duration : 20,
-          segments : 3,
-          timeVariation : [5.00, 7.00],
-          speedVariation : item,
-          GaitCorrectnessAudio: 1,    //
-          GaitCorrectnessVibration: 0,      //
-          GaitInstructionAudio: 1,       //
-          GaitInstructionSpeech: 0,      // 0 = audio, 1 = speech, 2 = partial, 3 = off
-          GaitInstructionPartialSpeech: 0,  // 0 = length, 
-          GaitInstructionVibration: 0,
+          type: TURN,
+          settings: {
+            duration : 20,
+            segments : 3,
+            timeVariation : [5.00, 8.00],
+            speedVariation : [item, item],
+            turnSharpness : [Math.max(sharp - 10, MIN_SHARP), Math.min(sharp+10, MAX_SHARP)],
+            turnRange : [10, 180],
+            turnDirection : 0
+          },
+          feedback:{
+            GaitCorrectnessMode: CORRECTNESS_MODE_AUDIO, 
+            GaitInstructionMode: INSTRUCT_MODE_AUDIO,
+            GaitTurnCorrectnessMode: CORRECTNESS_MODE_AUDIO, 
+            GaitTurnInstructionMode: INSTRUCT_MODE_SPEECH,
+          },
+          data: []
         },{
           id: ""+(Math.floor(Math.random() * 1000000) + 1),
           name: 'Pace & Turn',
-          duration : 20,
-          segments : 3,
-          timeVariation : [5.00, 7.00],
-          speedVariation : item,
-          GaitCorrectnessAudio: 1,    //
-          GaitCorrectnessVibration: 0,      //
-          GaitInstructionAudio: 1,       //
-          GaitInstructionSpeech: 0,      // 0 = audio, 1 = speech, 2 = partial, 3 = off
-          GaitInstructionPartialSpeech: 0,  // 0 = length, 
-          GaitInstructionVibration: 0,
+          type: TURNPACE,
+          settings: {
+            duration : 20,
+            segments : 3,
+            timeVariation : [5.00, 7.00],
+            speedVariation : [Math.max(item - 10, MIN_SPEED), Math.min(item+10, MAX_SPEED)],
+            turnSharpness : [Math.max(sharp - 10, MIN_SHARP), Math.min(sharp+10, MAX_SHARP)],
+            turnRange : [10, 180],
+            turnDirection : 0,
+          },
+          feedback:{
+            GaitCorrectnessMode: CORRECTNESS_MODE_AUDIO, 
+            GaitInstructionMode: INSTRUCT_MODE_AUDIO,
+            GaitTurnCorrectnessMode: CORRECTNESS_MODE_AUDIO, 
+            GaitTurnInstructionMode: INSTRUCT_MODE_SPEECH,
+          },
+          data: []
         }];
     this.props.initialize(omgList);
     this._handleNextPress({
@@ -82,7 +108,6 @@ export default class IntroPage extends React.Component {
 
   _handleNextPress(nextRoute) {
     this.props.navigator.pop();
-
   }
 
   static navigationOptions = {
@@ -94,8 +119,9 @@ export default class IntroPage extends React.Component {
     super();
     this.state = {
       scrollEnabled: true,
-      valuesForRange : [50, 70],
-      swiper: this.renderSwpier
+      averageSpeed : 50,
+      swiper: this.renderSwpier,
+      turnSharpness : 15
     };
     this._gotoHomePage = this._gotoHomePage.bind(this);
   }
@@ -106,7 +132,7 @@ export default class IntroPage extends React.Component {
 
   renderSwpier(){
 
-    const {valuesForRange , scrollEnabled} = this.state;
+    const {averageSpeed , scrollEnabled} = this.state;
       return(
       <Swiper style={styles.wrapper} 
         showsButtons={true} 
@@ -122,33 +148,33 @@ export default class IntroPage extends React.Component {
         </View>
         <View style={styles.slide3} >
           <View style={[styles.containerSheet2]}>
-            <Text style={styles.text}>Input your Suggest Speed (Steps per Minute):</Text>
+            <Text style={styles.text}>Input your Average Speed (Steps per Minute):</Text>
           </View>
           <View style={[styles.containerSheet]}>
-            <MultiSlider 
+            <SingleSlider 
               style={[styles.inline]}  
-              maximumValue={200}                                             
-              minimumValue={20}  
+              maximumValue={MAX_SPEED}                                             
+              minimumValue={MIN_SPEED}  
               minimumTrackTintColor='#ffffff'                          
               maximumTrackTintColor='#ffffff'                         
-              value={valuesForRange}
-              step={1}
+              value={averageSpeed}
+              step={SPEED_STEP}
               labelTextColor = '#ffffff'
               showLabelAll={false}
               onSlidingStart = {()=>{
                 this.setState({scrollEnabled: false});
               }}
-              onValueChange={(speed)=>{
-              }}
+              onValueChange={(speed)=>{}}
               onSlidingComplete={(value)=>{
-                this.setState({scrollEnabled: true, valuesForRange:value});
+                this.setState({scrollEnabled: true, averageSpeed:value});
               }}
             />
           </View>
           <View style={styles.containerSheet1}>
-            <TouchableOpacity style={styles.button}
+            <TouchableOpacity style={ styles.button }
               onPress={()=>{
-                this._gotoHomePage(this.state.valuesForRange);
+                this._gotoHomePage();
+
               }}>
               <Text style={styles.textOnButton}>Continue To App</Text>
             </TouchableOpacity>

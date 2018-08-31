@@ -137,6 +137,7 @@ android {
 }
 
 dependencies {
+    compile project(':react-native-tone')
     compile project(':react-native-ble-plx')
     compile project(':react-native-senno-insole-bluetooth')
     compile project(':react-native-tts')

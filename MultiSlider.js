@@ -10,6 +10,8 @@ import Svg,{
     G
 } from 'react-native-svg';
 
+import {DISABLE_LEFT, DISABLE_RIGHT, DISABLE_LEFT_AND_RIGHT} from "./disablesOptions";
+
 const ViewPropTypes = require('react-native').ViewPropTypes || View.propTypes;
 
 export default class MultiSlider extends React.Component {
@@ -31,6 +33,7 @@ export default class MultiSlider extends React.Component {
 	    labelTextColor: PropTypes.string,
 	    showLabelAll: PropTypes.bool,
 	    stepAverage: PropTypes.number,
+	    disables: PropTypes.string
 
 
   	};
@@ -45,7 +48,8 @@ export default class MultiSlider extends React.Component {
   		disabled: false,
   		showLabelAll: false,
   		stepAverage: -9999999,
-  		step: 0.01
+  		step: 0.01,
+  		disables: ""
   	};
   	constructor(props) {
 	    super(props);
@@ -152,7 +156,7 @@ export default class MultiSlider extends React.Component {
   	render() {
   		const { width, height } = Dimensions.get("window");
 	    const { value } = this.state;
-	    const { minimumValue, maximumValue, style, minimumTrackTintColor, maximumTrackTintColor, labelTextColor, step, showLabelAll, stepAverage } = this.props;
+	    const { minimumValue, maximumValue, style, minimumTrackTintColor, maximumTrackTintColor, labelTextColor, step, showLabelAll, stepAverage, disables } = this.props;
 	    
 	    const offset = 5;
 
@@ -168,8 +172,13 @@ export default class MultiSlider extends React.Component {
 	    const numberOfLabels = (maximumValue-minimumValue)/step;
 	    const stepPercentage = (100-offset*2)/numberOfLabels;
 
+	    const leftDisabled = (disables == DISABLE_LEFT || disables == DISABLE_LEFT_AND_RIGHT);
+	    const rightDisabled = (disables == DISABLE_RIGHT || disables == DISABLE_LEFT_AND_RIGHT);
+
+
 	    const upperLimPerc = 85;
 	    const lowerLimPerc = 15;
+	    const disabledColor = "#bbb";
 
 	    var labels = []; 
 	    for(var i = 0; i <= numberOfLabels; i+=(showLabelAll ? 1 : numberOfLabels)){
@@ -268,26 +277,19 @@ export default class MultiSlider extends React.Component {
         			stroke={minimumTrackTintColor}
         			strokeWidth = "2"
 	            />
-		        <Rect  {...this._panResponderOne.panHandlers}
-		        	  x = {0}
-		              y = {0}
-		              width = {(currentPercentage1Val + currentPercentage2Val)/2+"%"}
-		              height = "100%"
-		              
-		              fill = "#0000"
-              	/>
+		        
               	<Circle
 		        	  cx = {currentPercentage1}
 		              cy = "25"
 		              r = {this.state.pressedOne? 5:8}
-		              stroke = {minimumTrackTintColor}
+		              stroke = {leftDisabled ? disabledColor :minimumTrackTintColor}
 		              strokeWidth = "2"
-		              fill = {maximumTrackTintColor}
+		              fill = { maximumTrackTintColor}
               		/>
               	{(currentPercentage1Val > lowerLimPerc && currentPercentage1Val < upperLimPerc) &&<Text 
 	    			fill="#fff"
 	    			stroke="none"
-    				key={currentPercentage1}
+    				key={currentPercentage1+"1"}
 			        fontSize="20"
 			        fontWeight="bold"
 			        x= {currentPercentage1}
@@ -295,25 +297,19 @@ export default class MultiSlider extends React.Component {
 			        textAnchor="middle">
 			        {this.state.value[0].toFixed((this.state.value[0]*10%10 == 0? 0:1))}
 			    </Text>}
-              	<Rect  {...this._panResponderTwo.panHandlers}
-		        	  x = {(currentPercentage1Val + currentPercentage2Val)/2+"%"}
-		              y = {0}
-		              width = "100%"
-		              height = "100%"
-		              fill = "#0000"
-              	/>
+              	
               	<Circle
 		        	  cx = {currentPercentage2}
 		              cy = "25"
 		              r = {this.state.pressedTwo? 5:8}
-		              stroke = {minimumTrackTintColor}
+		              stroke = { rightDisabled ? disabledColor : minimumTrackTintColor}
 		              strokeWidth = "2"
 		              fill = {maximumTrackTintColor}
               		/>
               	{(currentPercentage2Val > lowerLimPerc && currentPercentage2Val < upperLimPerc) &&<Text 
 	    			fill="#fff"
 	    			stroke="none"
-    				key={currentPercentage2}
+    				key={currentPercentage2+"2"}
 			        fontSize="20"
 			        fontWeight="bold"
 			        x= {currentPercentage2}
@@ -321,6 +317,21 @@ export default class MultiSlider extends React.Component {
 			        textAnchor="middle">
 			        {this.state.value[1].toFixed((this.state.value[1]*10%10 == 0? 0:1))}
 			    </Text>}
+			    {!leftDisabled && <Rect  {...this._panResponderOne.panHandlers}
+		        	  x = {0}
+		              y = {0}
+		              width = {(currentPercentage1Val + currentPercentage2Val)/2+"%"}
+		              height = "100%"
+		              
+		              fill = "#0000"
+              	/>}
+              	{!rightDisabled && <Rect  {...this._panResponderTwo.panHandlers}
+		        	  x = {(currentPercentage1Val + currentPercentage2Val)/2+"%"}
+		              y = {0}
+		              width = "100%"
+		              height = "100%"
+		              fill = "#0000"
+              	/>}
 		      </Svg>
 		    </View>
 	    )
